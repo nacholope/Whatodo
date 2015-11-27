@@ -1,0 +1,15 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    font-weight: 100;
+    font-family: 'Lato';
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+nav,footer{
+    background-color: #43AB89 !important;
+}

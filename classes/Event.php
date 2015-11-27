@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: cicles
- * Date: 27/11/2015
- * Time: 19:48
- */
 class Event
 {
     private $id;
@@ -48,26 +42,32 @@ class Event
     private function startCard(){
         echo '<div class="card">';
     }
+    private function finishCard(){
+        echo '</div>';
+    }
     private function paintImage(){
         echo '<div class="card-image waves-effect waves-block waves-light">';
         echo "<img class='activator' src='img/{$this->img}'>";
         echo '</div>';
     }
+    private function paintContent(){
+        echo '<div class="card-content">';
+        echo "<span class='card-title activator grey-text text-darken-4'>{$this->name}<i
+                            class='icon-ellipsis-vertical'></i></span>
+                    <p><a href='#'>This is a link</a></p>";
+        echo '</div>';
+    }
+    private function paintRevealContent(){
+        echo '<div class="card-reveal">';
+        echo "<span class='card-title grey-text text-darken-4'>{$this->name}<i class='material-icons right'>close</i></span>";
+        echo "<p>{$this->description}</p>";
+        echo '</div>';
+    }
     public function paintEvent(){
         $this->startCard();
         $this->paintImage();
-
-           /*     <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Card Title<i
-                            class="material-icons right">more_vert</i></span>
-
-                    <p><a href="#">This is a link</a></p>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-
-                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                </div>
-            </div>  */
+        $this->paintContent();
+        $this->paintRevealContent();
+        $this->finishCard();
     }
 }

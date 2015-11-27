@@ -8,6 +8,6 @@
  */
 class Css
 {
-    const MATERIALIZE = '<link rel="stylesheet" href="css/materialize.min.css">';
+    const MATERIALIZE = '<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>';
     const MAIN = '<link rel="stylesheet" href="css/main.css">';
 }

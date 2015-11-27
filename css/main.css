@@ -2,8 +2,6 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    font-weight: 100;
-    font-family: 'Lato';
 }
 
 main {
@@ -11,5 +9,13 @@ main {
 }
 
 nav,footer{
+    font-weight: 100;
+    font-family: 'Lato';
     background-color: #43AB89 !important;
+}
+.navbar-fixed{
+    margin-bottom: 1%;
+}
+.card{
+    margin-top: 5%;
 }

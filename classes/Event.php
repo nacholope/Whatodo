@@ -53,7 +53,7 @@ class Event
     private function paintContent(){
         echo '<div class="card-content">';
         echo "<span class='card-title activator grey-text text-darken-4'>{$this->name}<i
-                            class='icon-ellipsis-vertical'></i></span>
+                            class='material-icons right'>more_vert</i></span>
                     <p><a href='#'>Informacio de la web</a></p>";
         echo '</div>';
     }

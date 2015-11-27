@@ -54,7 +54,7 @@ class Event
         echo '<div class="card-content">';
         echo "<span class='card-title activator grey-text text-darken-4'>{$this->name}<i
                             class='icon-ellipsis-vertical'></i></span>
-                    <p><a href='#'>This is a link</a></p>";
+                    <p><a href='#'>Informacio de la web</a></p>";
         echo '</div>';
     }
     private function paintRevealContent(){

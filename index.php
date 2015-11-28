@@ -18,7 +18,7 @@
             <?php
             include 'classes/Event.php';
 
-            $event = new Event("4", "deportes", "SANT JOAN", "vives llull 15", "mahon", "Lorem ipsum", "28-11-2015", "29-11-2015", true, false, "sant-joan.jpg", 14);
+            $event = new Event("4", "deportes", "Sant Joan", "vives llull 15", "mahon", "Lorem ipsum", "28-11-2015", "29-11-2015", true, false, "sant-joan.jpg", 14);
             $event->paintEvent();
             ?>
         </div>

@@ -1,13 +1,31 @@
 <?php
 require 'data.inc';
-	class Connection extends mysqli{
+
+/**
+ * Class Connection
+ */
+class Connection extends mysqli
+{
+
 	private $connection;
-	function __construct(){
+
+	/**
+	 * Connection constructor.
+	 */
+	function __construct()
+	{
 		$this->connection = parent::__construct(SERVER,OPERATOR,PASSWORD,DATABASE);
 	}
-	public function select($query){
+
+	/**
+	 * @param $query
+	 * @return bool|mysqli_result
+	 */
+	public function select($query)
+	{
 		return $this->query($query);
 	}
+
 }
 
 /*$c = new Connection();

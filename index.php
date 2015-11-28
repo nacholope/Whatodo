@@ -13,6 +13,13 @@
 <body>
 <?php include 'components/navbar.php' ?>
 <div class="container">
+    <?php
+        if(isset($_POST)){
+            function displayCategory(){
+               // $conexion->Select("select * from categories where id = {$_POST['id']}");
+            }
+        }
+    ?>
     <div class="row">
         <div class="col s12 m4">
             <?php
@@ -123,5 +130,8 @@ include 'components/Footer.php';
 echo Script::JQUERY;
 echo Script::MATERIALIZE;
 ?>
+<script type="application/javascript">
+    console.log("hi");
+</script>
 </body>
 </html>

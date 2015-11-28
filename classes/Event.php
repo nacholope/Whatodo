@@ -246,41 +246,63 @@ class Event
     /**
      * Function startCard: prints card header
      */
-    private function startCard(){
+    private function startCard()
+    {
         echo '<div class="card">';
     }
 
     /**
      * Function finishCard: prints card footer
      */
-    private function finishCard(){
+    private function finishCard()
+    {
         echo '</div>';
     }
 
     /**
      * Function paintImage: prints card image
      */
-    private function paintImage(){
+    private function paintImage()
+    {
         echo '<div class="card-image waves-effect waves-block waves-light">';
         echo "<img class='activator' src='img/{$this->img}'>";
         echo '</div>';
     }
 
     /**
-     * Function paintContent: prints card content
+     * Function paintTitle: Prints The title of the card. In case of being too big truncateds it
      */
-    private function paintContent(){
+    private function paintTitle()
+    {
+        $title = $this->name;
+        if ($title > 24) {
+            $title = substr($title, 0, 21);
+            $title .= '...';
+            echo "<span class='card-title activator grey-text text-darken-4\'>{$title}<i
+                            class='material-icons right'>more_vert</i></span>";
+        } else {
+            echo "<span class='card-title activator grey-text text-darken-4\'>{$title}<i
+                            class='material-icons right'>more_vert</i></span>";
+        }
+    }
+
+    /**
+     * Function paintContent: prints card content
+     * Calls paintTitle();
+     */
+    private function paintContent()
+    {
         echo '<div class="card-content">';
-        echo "<span class='card-title activator grey-text text-darken-4'>{$this->name}<i
-                            class='material-icons right'>more_vert</i></span>
-                    <p><a href='#'>Informacio de la web</a></p>";
+        $this->paintTitle();
+        echo "<p><a href='#'>Informacio de la web</a></p>";
         echo '</div>';
     }
 
     /**
      * Function paintRevealContent: prints card reveal content
      */
-    private function paintRevealContent(){
+    private function paintRevealContent()
+    {
         echo '<div class="card-reveal">';
         echo "<span class='card-title grey-text text-darken-4'>{$this->name}<i class='material-icons right'>close</i></span>";
         echo "<p>{$this->description}</p>";
@@ -290,7 +312,8 @@ class Event
     /**
      * Function paintEvent: prints event card
      */
-    public function paintEvent(){
+    public function paintEvent()
+    {
         $this->startCard();
         $this->paintImage();
         $this->paintContent();

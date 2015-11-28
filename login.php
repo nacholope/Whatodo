@@ -15,47 +15,76 @@
 <body>
 <?php include 'components/navbar.php' ?>
 <main>
-<div class="container">
-    <div class="row">
-        <form class="col s12 m10 push-m1 l8 push-l2 center-align">
-            <div class="row">
-                <p class="flow-text center-align">Identif&iacute;cate para entrar</p>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="email" type="email" class="validate" required>
-                    <label for="email" data-error="Incorrecto" data-success="Correcto">Email</label>
+
+    <?php
+    if($_SESSION['loged'] == 1) header("Location: index.php");
+    if (!empty($_POST)) {
+        print_r($_POST);
+        $conec = new Connection();
+
+        $sentenceSQL = "select *
+                        from Users
+                        where email = '{$_POST['email']}'
+                        and
+                        password = '{$_POST['password']}';";
+        echo $sentenceSQL;
+        $results = $conec->select($sentenceSQL);
+        if($results->num_rows == 1){
+            $data = $results->fetch_assoc();
+            $_SESSION['id'] = $data['id'];
+            $_SESSION['name'] = $data['name'];
+            $_SESSION['surname'] = $data['surname'];
+            $_SESSION['email'] = $data['email'];
+            $_SESSION['loged'] = 1;
+            header("Location: index.php");
+        }
+        else{
+            echo '<h5 class="center-align" style="color:red;">Error invalid user or password</h5>';
+        }
+    }
+    ?>
+    <div class="container">
+        <div class="row">
+            <form method="post" action="login.php" class="col s12 m10 push-m1 l8 push-l2 center-align">
+                <div class="row">
+                    <p class="flow-text center-align">Identif&iacute;cate para entrar</p>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="password" type="password" class="validate" required>
-                    <label for="password">Contrasenya</label>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="email" name="email" type="email" class="validate" required>
+                        <label for="email" data-error="Incorrecto" data-success="Correcto">Email</label>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col s12">
-                    <p>
-                        <input type="checkbox" id="rememberMe" />
-                        <label for="rememberMe">Recu&eacute;rdame</label>
-                    </p>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="password" name="password" type="password" class="validate" required>
+                        <label for="password">Contrasenya</label>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col s12">
-                    <button class="btn waves-effect waves-light" type="submit" name="action">
-                       Entrar
-                    </button>
+                <div class="row">
+                    <div class="col s12">
+                        <p>
+                            <input type="checkbox" id="rememberMe"/>
+                            <label for="rememberMe">Recu&eacute;rdame</label>
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col s12">
-                    <p class="center-align">No tienes una cuenta? <a href="signup.php">Reg&iacute;strate gratis aqu&iacute;.</a></p>
+                <div class="row">
+                    <div class="col s12">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">
+                            Entrar
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </form>
+                <div class="row">
+                    <div class="col s12">
+                        <p class="center-align">No tienes una cuenta? <a href="signup.php">Reg&iacute;strate gratis aqu&iacute;.</a>
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 </main>
 
 <?php

@@ -276,7 +276,7 @@ class Event
     {
         $title = ucfirst(strtolower($this->name));
         if (strlen($title) > 20) {
-            $title = substr($title, 0, 18);
+            $title = substr($title, 0, 17);
             $title .= '...';
             echo "<span class='card-title activator text-darken-4'>{$title}<i
                             class='material-icons right'>more_vert</i></span>";

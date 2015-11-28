@@ -284,6 +284,7 @@ class Event
             echo "<span class='card-title activator grey-text text-darken-4\'>{$title}<i
                             class='material-icons right'>more_vert</i></span>";
         }
+
     }
 
     /**

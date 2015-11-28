@@ -1,12 +1,13 @@
 <ul id="categories" class="dropdown-content">
 <?php
-    //TODO generate categories
-    echo '<li><a href="#!">Cinema</a></li>';
-    echo '<li><a href="#!">Food</a></li>';
-    echo '<li><a href="#!">Sports</a></li>';
+    include 'classes/Connection.php';
+    $c = new Connection();
+    $results = $c->select("select * from Categories");
+    while($category = $results->fetch_assoc()){
+        echo "<li><a href='#!'>{$category['name']}</a></li>";
+    }
 ?>
 </ul>
-
 <div class="navbar-fixed">
     <nav>
         <div class="nav-wrapper">

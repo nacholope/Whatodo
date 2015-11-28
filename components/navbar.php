@@ -12,7 +12,7 @@
 <ul id="userOptions" class="dropdown-content">
     <li><a href="#!">Mis eventos</a></li>
     <li><a href="user_profile.php">Mi perfil</a></li>
-    <li><a href="#!">Salir</a></li>
+    <li><a href="log_out.php">Salir</a></li>
 </ul>
 
 <div class="navbar-fixed">
@@ -25,7 +25,7 @@
                     <li><a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="categories">Categorias<i class="material-icons right">arrow_drop_down</i></a></li>
                         <?php
                         if(isset($_SESSION['name'])) {
-                            echo '<li><a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="userOptions">' . $_SESSION['name'] . '<i class="material-icons right">arrow_drop_down</i></a></li>';
+                            echo '<li><a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="userOptions">' . $_SESSION['name'] . '<i class="material-icons left">perm_identity</i></a></li>';
                         } else {
                             echo '<li><a href="login.php">Entrar</a></li>';
                         }

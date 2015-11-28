@@ -4,7 +4,7 @@
     $c = new Connection();
     $results = $c->select("select * from Categories");
     while($category = $results->fetch_assoc()){
-        echo "<li><a href='#!'>{$category['name']}</a></li>";
+        echo "<li><a href='index.php?category={$category['id']}'>{$category['name']}</a></li>";
     }
 ?>
 </ul>

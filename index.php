@@ -16,41 +16,46 @@
 <?php include 'components/navbar.php'; ?>
 <main>
     <div class="container">
-        <?php
-        if (isset($_POST)) {
-            function displayCategory()
-            {
-                // $conexion->Select("select * from categories where id = {$_POST['id']}");
-            }
-        }
-        ?>
         <div class="row">
             <?php
-            include 'classes/Event.php';
-            $conec = new Connection();
-            $results = $conec->select("select * from Events limit 30");
+            function displayContent($condition = null)
+            {
+                include 'classes/Event.php';
+                $conec = new Connection();
 
-            while ($evt = $results->fetch_assoc()) {
-                $event = new Event(
-                    $evt['id'],
-                    $evt['user'],
-                    $evt['category'],
-                    $evt['name'],
-                    $evt['address'],
-                    $evt['city'],
-                    $evt['description'],
-                    $evt['dateStart'],
-                    $evt['dateEnd'],
-                    $evt['img'],
-                    $evt['public'],
-                    $evt['offer']
-                );
-                echo '<div class="col s12 m4">';
-                $event->paintEvent();
-                echo '</div>';
+                $sentenceSQL = "select * from Events";
+                if($condition != null) $sentenceSQL .= " where category = " . $condition ;
+                $sentenceSQL .= " limit 15";
+                $results = $conec->select($sentenceSQL);
+                while ($evt = $results->fetch_assoc()) {
+                    $event = new Event(
+                        $evt['id'],
+                        $evt['user'],
+                        $evt['category'],
+                        $evt['name'],
+                        $evt['address'],
+                        $evt['city'],
+                        $evt['description'],
+                        $evt['dateStart'],
+                        $evt['dateEnd'],
+                        $evt['img'],
+                        $evt['public'],
+                        $evt['offer']
+                    );
+                    echo '<div class="col s12 m4">';
+                    $event->paintEvent();
+                    echo '</div>';
 
+                }
+            }
+
+            if (!empty($_GET)) {
+                displayContent($_GET['category']);
+            } else {
+                displayContent();
             }
             ?>
+
         </div>
     </div>
 </main>

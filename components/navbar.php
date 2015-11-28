@@ -19,7 +19,7 @@
     <nav>
         <div class="nav-wrapper">
             <div class="container">
-                <a href="#!" class="brand-logo">Whatodo <span style="color:greenyellow">In Menorca</span> </a>
+                <a href="index.php" class="brand-logo">Whatodo <span style="color:greenyellow">In Menorca</span> </a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="sass.html">Buscar</a></li>
                     <li><a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="categories">Categorias<i class="material-icons right">arrow_drop_down</i></a></li>

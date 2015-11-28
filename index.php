@@ -3,6 +3,7 @@
 <head>
     <title>Whatodo</title>
     <?PHP
+    include 'classes/session.inc';
     include 'components/Css.php';
     echo Css::MATERIALIZE;
     echo Css::MAIN;

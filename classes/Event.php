@@ -234,6 +234,7 @@ class Event
         return $this->img;
     }
 
+
     /**
      * @param mixed $img
      */

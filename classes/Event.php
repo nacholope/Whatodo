@@ -278,10 +278,10 @@ class Event
         if ($title > 24) {
             $title = substr($title, 0, 21);
             $title .= '...';
-            echo "<span class='card-title activator grey-text text-darken-4\'>{$title}<i
+            echo "<span class='card-title activator text-darken-4'>{$title}<i
                             class='material-icons right'>more_vert</i></span>";
         } else {
-            echo "<span class='card-title activator grey-text text-darken-4\'>{$title}<i
+            echo "<span class='card-title activator text-darken-4'>{$title}<i
                             class='material-icons right'>more_vert</i></span>";
         }
 

@@ -11,14 +11,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-<?php include 'components/navbar.php' ?>
+<?php include 'components/navbar.php';
+
+$c = new Connection();
+$q = "select * from Users";
+$q = "select * from ";
+print_r($c->select($q));
+?>
 <div class="container">
     <?php
-        if(isset($_POST)){
-            function displayCategory(){
-               // $conexion->Select("select * from categories where id = {$_POST['id']}");
-            }
+    if (isset($_POST)) {
+        function displayCategory()
+        {
+            // $conexion->Select("select * from categories where id = {$_POST['id']}");
         }
+    }
     ?>
     <div class="row">
         <div class="col s12 m4">

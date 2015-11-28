@@ -275,8 +275,8 @@ class Event
     private function paintTitle()
     {
         $title = ucfirst(strtolower($this->name));
-        if (strlen($title) > 22) {
-            $title = substr($title, 0, 19);
+        if (strlen($title) > 20) {
+            $title = substr($title, 0, 18);
             $title .= '...';
             echo "<span class='card-title activator text-darken-4'>{$title}<i
                             class='material-icons right'>more_vert</i></span>";

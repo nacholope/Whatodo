@@ -274,7 +274,7 @@ class Event
      */
     private function paintTitle()
     {
-        $title = $this->name;
+        $title = ucfirst(strtolower($this->name));
         if ($title > 24) {
             $title = substr($title, 0, 21);
             $title .= '...';

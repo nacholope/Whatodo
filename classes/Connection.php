@@ -10,9 +10,9 @@ require 'data.inc';
 	}
 }
 
-$c = new Connection();
+/*$c = new Connection();
 $q = "select * from Users";
-print_r($c->select($q));
+print_r($c->select($q));*/
 
 
 ?>

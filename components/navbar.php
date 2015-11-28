@@ -25,7 +25,7 @@
                     <li><a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="categories">Categorias<i class="material-icons right">arrow_drop_down</i></a></li>
                         <?php
                         if(isset($_SESSION['name'])) {
-                            echo '<li><a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="userOptions">' . $_SESSION['name'] . '<i class="material-icons left">perm_identity</i></a></li>';
+                            echo '<li><a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="userOptions">' . ucfirst($_SESSION['name']) . '<i class="material-icons right">perm_identity</i></a></li>';
                         } else {
                             echo '<li><a href="login.php">Entrar</a></li>';
                         }

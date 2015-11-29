@@ -22,17 +22,23 @@
 
         if (!empty($_POST)) {
             $connection = Connection::get();
-            $data =
-                [
-                    'name' => $_POST['name'],
-                    'surname' => $_POST['surname'],
-                    'password' => $_POST['password'],
-                    'email' => $_POST['email']
-                ];
-            if ($connection->insert('user', $data) == 1) {
-                header("Location: login.php");
+            $sentence = "select id from Users WHERE email = '{$_POST['email']}';";
+            $email_validate = $connection->select($sentence);
+            if ($email_validate->num_rows > 0) {
+                echo '<h5 class="center-align" style="color:red;">El email ya existe.</h5>';
             } else {
-                echo '<h5 class="center-align" style="color:red;">Error, comprueba que la información es correcta</h5>';
+                $data =
+                    [
+                        'name' => $_POST['name'],
+                        'surname' => $_POST['surname'],
+                        'password' => $_POST['password'],
+                        'email' => $_POST['email']
+                    ];
+                if ($connection->insert('user', $data) == 1) {
+                    header("Location: login.php");
+                } else {
+                    echo '<h5 class="center-align" style="color:red;">Error, comprueba que la información es correcta</h5>';
+                }
             }
         }
         ?>

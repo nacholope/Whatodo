@@ -10,7 +10,7 @@ class Delete implements Command
 {
     private $tasks;
     public function __construct(){
-        $this->add(new DeletetUser());
+        $this->add(new DeleteUser());
         $this->add(new DeleteCategory());
         $this->add(new DeleteEvent());
     }

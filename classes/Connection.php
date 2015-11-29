@@ -3,6 +3,7 @@ require_once 'data.inc';
 require_once 'Command.php';
 require_once 'InsertTask.php';
 require_once 'UpdateTask.php';
+require_once 'DeleteTask.php';
 require_once 'Insert.php';
 require_once 'Delete.php';
 require_once 'Update.php';

@@ -10,7 +10,7 @@
 </ul>
 
 <ul id="userOptions" class="dropdown-content">
-    <li><a href="#!">Mis eventos</a></li>
+    <li><a href="user_events.php">Mis eventos</a></li>
     <li><a href="user_profile.php">Mi perfil</a></li>
     <li><a href="log_out.php">Salir</a></li>
 </ul>

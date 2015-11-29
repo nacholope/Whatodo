@@ -141,7 +141,6 @@ if (empty($_POST)) {
 //"img"=>'100.jpg',
 //"public"=>'1',
 //"offer"=>'cerveza gratis!'], null);
-    echo "MUNDOOOOOOOOOOOOOOOOOOOOOOO";
     $connection = Connection::get();
     $attributes =
         [
@@ -151,14 +150,14 @@ if (empty($_POST)) {
             'address' => $_POST['address'],
             'city' => $_POST['city'],
             'description' => $_POST['description'],
-            'dateStart' => $_POST['dateStart'] . ' ' . $_POST['timeStart'] . ':00',
-            'dateEnd' => $_POST['dateEnd'] . ' ' . $_POST['timeEnd'] . ':00',
+            'dateStart' => $_POST['dateStart'] . " " . $_POST['timeStart'] . ':00',
+            'dateEnd' => $_POST['dateEnd'] . " " . $_POST['timeEnd'] . ':00',
             'img' => $_POST['img'],
             'public' => $_POST['public'],
             'offer' => $_POST['offer']
         ];
 //    print_r($attributes);
-//    echo $connection->insert('event', $attributes, null);
+    echo $connection->insert('event', $attributes, null);
     header("Location: user_events.php");
 
 }

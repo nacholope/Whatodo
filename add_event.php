@@ -26,13 +26,13 @@ include 'components/navbar.php';
 
 
 <?php
-if(isset($_SESSION['loged']) == null) header("Location: index.php");
+if (isset($_SESSION['loged']) == null) header("Location: index.php");
 
 if (empty($_POST)) {
     echo '<main>
     <div class="container">
         <div class="row center-align">
-            <p class="flow-text">Anadir evento</p>
+            <p class="flow-text">Añadir evento</p>
             <form class="custom-padding center-align" method="post">
                 <div class="row custom-row-margin">
                     <div class="input-field">
@@ -100,7 +100,16 @@ if (empty($_POST)) {
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="img" name="img" type="text" class="validate">
+                   <select id="img" name="img" class="validate">
+                    ';
+
+        for($i = 0; $i < 850; $i++){
+            echo "<option value='$i'>$i</option>";
+        }
+
+
+                    echo '
+                        </select>
                         <label for="name" data-error="Incorrecto" data-success="Correcto">Imagen</label>
                     </div>
                     <div class="input-field col s6">
@@ -142,15 +151,15 @@ if (empty($_POST)) {
             'address' => $_POST['address'],
             'city' => $_POST['city'],
             'description' => $_POST['description'],
-            'dateStart' => $_POST['dateStart'] . $_POST['timeStart'] . ':00',
-            'dateEnd' => $_POST['dateEnd'] . $_POST['timeEnd'] . ':00',
+            'dateStart' => $_POST['dateStart'] . ' ' . $_POST['timeStart'] . ':00',
+            'dateEnd' => $_POST['dateEnd'] . ' ' . $_POST['timeEnd'] . ':00',
             'img' => $_POST['img'],
             'public' => $_POST['public'],
             'offer' => $_POST['offer']
         ];
     print_r($attributes);
     echo $connection->insert('event', $attributes, null);
-    header("Location: index.php");
+//    header("Location: index.php");
 
 }
 ?>

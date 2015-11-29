@@ -1,6 +1,6 @@
 <?php
-	define("SERVER", "192.168.1.188");
-	define("OPERATOR", "root");
-	define("PASSWORD", "1234");
-	define("DATABASE", "mydb");
+	define("SERVER", "mysql.webcindario.com");
+	define("OPERATOR", "whatodo");
+	define("PASSWORD", "whatodo");
+	define("DATABASE", "whatodo");
 ?>

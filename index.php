@@ -26,7 +26,7 @@
 
                 $sentenceSQL = "select * from Events";
                 if($condition != null) $sentenceSQL .= " where category = " . $condition ;
-                $sentenceSQL .= " limit 15";
+                $sentenceSQL .= " limit 30";
                 $results = $connection->select($sentenceSQL);
                 while ($evt = $results->fetch_assoc()) {
                     $event = new Event(

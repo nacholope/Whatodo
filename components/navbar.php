@@ -1,8 +1,8 @@
 <ul id="categories" class="dropdown-content">
 <?php
     include 'classes/Connection.php';
-    $c = new Connection();
-    $results = $c->select("select * from Categories");
+    $connection = Connection::get();
+    $results = $connection->select("select * from Categories");
     while($category = $results->fetch_assoc()){
         echo "<li><a href='index.php?category={$category['id']}'>{$category['name']}</a></li>";
     }
@@ -25,7 +25,7 @@
                     <li><a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="categories">Categorias<i class="material-icons right">arrow_drop_down</i></a></li>
                         <?php
                         if(isset($_SESSION['name'])) {
-                            echo '<li><a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="userOptions">' . $_SESSION['name'] . '<i class="material-icons left">perm_identity</i></a></li>';
+                            echo '<li><a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="userOptions">' . ucfirst($_SESSION['name']) . '<i class="material-icons right">perm_identity</i></a></li>';
                         } else {
                             echo '<li><a href="login.php">Entrar</a></li>';
                         }

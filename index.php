@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="ISO-8859-1" content="text/html"/>
     <title>Whatodo</title>
     <?PHP
     include 'classes/session.inc';
@@ -21,12 +22,12 @@
             function displayContent($condition = null)
             {
                 include 'classes/Event.php';
-                $conec = new Connection();
+                $connection = Connection::get();
 
                 $sentenceSQL = "select * from Events";
                 if($condition != null) $sentenceSQL .= " where category = " . $condition ;
                 $sentenceSQL .= " limit 15";
-                $results = $conec->select($sentenceSQL);
+                $results = $connection->select($sentenceSQL);
                 while ($evt = $results->fetch_assoc()) {
                     $event = new Event(
                         $evt['id'],

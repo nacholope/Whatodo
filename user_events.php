@@ -28,7 +28,26 @@ include 'components/navbar.php';
         }
         if($_POST['action'] == "update"){
             $connection = Connection::get();
-            print_r($_POST);
+            $dateStart = $_POST['dateStart'] . " " . $_POST['timeStart'] . ":00";
+            $dateEnd = $_POST['dateEnd'] . " " . $_POST['timeEnd'] . ":00";
+            $results = $connection->select("select id from Cities where name = '{$_POST['city']}'");
+            $city = $results->fetch_assoc()['id'];
+            $values =
+                [
+                    'id'=> $_POST['id'],
+                    'user' => $_SESSION['id'],
+                    'category' => $_POST['category'],
+                    'name' => $_POST['name'],
+                    'address' => $_POST['address'],
+                    'city' => $city,
+                    'description' => $_POST['description'],
+                    'dateStart' => $dateStart,
+                    'dateEnd' => $dateEnd,
+                    'img' => $_POST['image'],
+                    'public' => 1,
+                    'offer' => $_POST['offer'],
+                ];
+            $connection->update("event",$values,["id"=>$_POST['id']]);
         }
     }
     ?>

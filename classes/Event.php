@@ -372,21 +372,20 @@ class Event
 
     private function userEventAdress()
     {
-        /*
+
         $sentenceSQL = "select name from cities WHERE id = {$this->id}";
         $results = Connection::get()->select($sentenceSQL);
-        print_r($results);
         $cityName = $results->fetch_assoc()['name'];
         echo '<div class="row">';
         echo '<div class="input-field col s6">';
-        echo '<input id="surname" type="text" class="validate" value="'.$cityName.'" required="">';
+        echo '<input id="surname" name="city" type="text" class="validate" value="'.$cityName.'" required="">';
         echo "<label for='surname' data-error='Incorrecto' data-success='Correcto'>Ciudad</label>";
         echo '</div>';
         echo '<div class="input-field col s6">';
-        echo '<input id="surname" type="text" class="validate" value="'. $this->address .'">';
+        echo '<input id="surname" name="address" type="text" class="validate" value="'. $this->address .'">';
         echo "<label for='surname' data-error'Incorrecto' data-success='Correcto'>Direccion</label>";
         echo '</div>';
-        echo '</div>'; */
+        echo '</div>';
     }
 
     private function userEventStartime()
@@ -398,11 +397,11 @@ class Event
         echo '<div class="row">';
         echo '<div class="input-field col s6">';
         echo '<label for="dateStart">Fecha inicio</label>';
-        echo "<input id='dateStart' type='date' value='{$date_Start}' class='datepicker'>";
+        echo "<input id='dateStart' name='dateStart' type='date' value='{$date_Start}' class='datepicker'>";
         echo '</div>';
         echo '<div class="input-field col s6">';
         echo '<label for="timeStart">Hora inicio</label>';
-        echo "<input id='timeStart' class='timepicker' value='{$date_Start_hour}' type='text'>";
+        echo "<input id='timeStart' name='timeStart' class='timepicker' value='{$date_Start_hour}' type='text'>";
         echo '</div>';
         echo '</div>';
     }
@@ -415,11 +414,11 @@ class Event
         echo '<div class="row">';
         echo '<div class="input-field col s6">';
         echo '<label for="dateStart">Fecha fin</label>';
-        echo "<input id='dateStart' type='date' value='{$date_Start}' class='datepicker'>";
+        echo "<input id='dateEnd' name='dateEnd' type='date' value='{$date_Start}' class='datepicker'>";
         echo '</div>';
         echo '<div class="input-field col s6">';
         echo '<label for="timeFinish">Hora fin</label>';
-        echo "<input id='timeFinish' class='timepicker' value='{$date_Start_hour}' type='text'>";
+        echo "<input id='timeFinish' name='timeEnd' class='timepicker' value='{$date_Start_hour}' type='text'>";
         echo '</div>';
         echo '</div>';
     }
@@ -434,8 +433,8 @@ class Event
     private function userEventImgPromotion(){
         echo '<div class="row">';
         echo '<div class="input-field col s6">';
-        echo '<input id="surname" type="text" class="validate">';
-        echo '<label for="surname" name="image" data-error="Incorrecto" data-success="Correcto">Imagen</label>';
+        echo '<input id="surname" name="image" value="' . $this->img .'" type="text" class="validate">';
+        echo '<label for="surname"  data-error="Incorrecto" data-success="Correcto" >Imagen</label>';
         echo '</div>';
         echo '<div class="input-field col s6">';
         echo '<input id="surname" name="offer" type="text" value="' . $this->offer . '" class="validate">';

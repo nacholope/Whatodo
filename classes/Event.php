@@ -363,24 +363,25 @@ class Event
               <label>Categoria</label>
               </div>';
         echo '<div class="input-field col s6">';
-        echo '<input id="surname" type="text" class="validate" required>';
-        echo "<label for='surname' data-error='Incorrecto' data-success='Correcto'>{$this->name}</label>";
+        echo '<input id="surname" type="text" class="validate" value="'. $this->name .'">';
+        echo "<label for='surname' data-error='Incorrecto' data-success='Correcto'>Nombre</label>";
         echo '</div>';
         echo '</div>';
     }
 
     private function userEventAdress()
     {
+        $sentenceSQL = "select name from cities WHERE id = {$this->id}";
+        $results = Connection::get()->select($sentenceSQL);
+        $cityName = $results->fetch_assoc()['name'];
         echo '<div class="row">';
         echo '<div class="input-field col s6">';
-        echo '<input id="surname" type="text" class="validate" required="">';
-        echo "<label for='surname' data-error='Incorrecto' data-success='Correcto'>{$this->address}</label>";
+        echo '<input id="surname" type="text" class="validate" value="'.$cityName.'" required="">';
+        echo "<label for='surname' data-error='Incorrecto' data-success='Correcto'>Ciudad</label>";
         echo '</div>';
         echo '<div class="input-field col s6">';
-        echo '<input id="surname" type="text" class="validate" required="">';
-        $results = Connection::get()->select("select name from Cities WHERE id = {$this->id}");
-        $cityName = $results->fetch_assoc()['name'];
-        echo "<label for='surname' data-error'Incorrecto' data-success='Correcto'>$cityName</label>";
+        echo '<input id="surname" type="text" class="validate" value="'. $this->address .'">';
+        echo "<label for='surname' data-error'Incorrecto' data-success='Correcto'>Direccion</label>";
         echo '</div>';
         echo '</div>';
     }
@@ -402,19 +403,73 @@ class Event
         echo '</div>';
         echo '</div>';
     }
-
+    private function userEventEndTime()
+    {
+        $date = $this->date_end;
+        $date_Start = explode(" ",$date)[0];
+        $date_Start_hour = explode(" ",$date)[1];
+        $date_Start_hour = substr($date_Start_hour,0,strlen($date_Start_hour)-3);
+        echo '<div class="row">';
+        echo '<div class="input-field col s6">';
+        echo '<label for="dateStart">Fecha fin</label>';
+        echo "<input id='dateStart' type='date' value='{$date_Start}' class='datepicker'>";
+        echo '</div>';
+        echo '<div class="input-field col s6">';
+        echo '<label for="timeFinish">Hora fin</label>';
+        echo "<input id='timeFinish' class='timepicker' value='{$date_Start_hour}' type='text'>";
+        echo '</div>';
+        echo '</div>';
+    }
+    private function userEventBodyDescription(){
+        echo '<div class="row">';
+        echo '<div class="input-field col s12">';
+        echo '<textarea id="description" class="materialize-textarea">' . $this->description .'</textarea>';
+        echo '<label for="description">Descripcion</label>';
+        echo '</div>';
+        echo '</div>';
+    }
+    private function userEventImgPromotion(){
+        echo '<div class="row">';
+        echo '<div class="input-field col s6">';
+        echo '<input id="surname" type="text" class="validate">';
+        echo '<label for="surname" data-error="Incorrecto" data-success="Correcto">Imagen</label>';
+        echo '</div>';
+        echo '<div class="input-field col s6">';
+        echo '<input id="surname" type="text" value="' . $this->offer . '" class="validate">';
+        echo '<label for="surname" data-error="Incorrecto" data-success="Correcto">Promoci&oacute;n</label>';
+        echo '</div>';
+        echo '</div>';
+    }
+    private function userEventUpdateButton(){
+        echo '<div class="row">
+                <div class="col s12">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">
+                        Actualizar
+                    </button>
+                    <form method="post" action="user_event.php">
+                        <button class="btn waves-effect waves-light red" type="submit" name="action">
+                            Eliminar
+                        </button>
+                    </form>
+                </div>
+              </div>';
+    }
     private function userEventBodyContent()
     {
         $this->userEventSwitch();
         $this->userEventCategory();
         $this->userEventAdress();
         $this->userEventStartime();
+        $this->userEventEndTime();
+        $this->userEventBodyDescription();
+        $this->userEventImgPromotion();
+        $this->userEventUpdateButton();
     }
 
     private function UserEventBody()
     {
         echo '<div class="collapsible-body">';
-        echo '<form method="POST" action="user_event.php" class="custom-padding">';
+        echo '<form method="POST" action="user_event.php" class="custom-padding center-align">';
         $this->UserEventBodyContent();
         echo '</form>';
         echo '</div>';

@@ -22,8 +22,14 @@ include 'components/navbar.php';
     <?php
 
     if (!empty($_POST)) {
-        $connection = Connection::get();
-        $sentence = "select id from Users WHERE email = '{$_POST['email']}';";
+        if($_POST['action'] == "delete"){
+            $connection = Connection::get();
+            $connection->delete("event",['id'=>$_POST['id']],null);
+        }
+        if($_POST['action'] == "update"){
+            $connection = Connection::get();
+            print_r($_POST);
+        }
     }
     ?>
     <div class="container">

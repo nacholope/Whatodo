@@ -14,7 +14,7 @@ class UpdateEvent implements UpdateTask
         $this->connection = Connection::get();
     }
     public function exec($command, $arguments, $conditions){
-        print_r($conditions);
+//        print_r($conditions);
         if ($command != "event"){return false;}
         else {
             $args = array_values($arguments);
@@ -40,7 +40,7 @@ class UpdateEvent implements UpdateTask
                 }
             }
             $this->query .= ";";
-            print_r($this->query);
+//            print_r($this->query);
             return $this->connection->query($this->query);
         }
     }

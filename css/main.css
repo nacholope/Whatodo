@@ -8,16 +8,21 @@ main {
     flex: 1 0 auto;
 }
 
-nav,footer{
+nav,footer {
     font-weight: 100;
     font-family: 'Lato';
     background-color: #43AB89 !important;
 }
-.navbar-fixed{
+.navbar-fixed {
     margin-bottom: 1%;
 }
-.card{
+.card {
     margin-top: 5%;
+}
+
+.fixed-height {
+    height: 200px;
+    overflow: hidden;
 }
 
 .custom-padding {

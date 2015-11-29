@@ -10,14 +10,16 @@ class Insert implements Command
 {
     private $tasks;
     public function __construct(){
-        $this->add(new InsertTaskUser());
-        $this->add(new InsertTaskCategory());
+        $this->add(new InsertUser());
+        $this->add(new InsertCategory());
+        $this->add(new InsertEvent());
     }
     public function add($task){$this->tasks[] = $task;}
 
     public function run($task, $arguments){
         foreach($this->tasks as $tsk){
-            if($tsk->exec($task, $arguments)) return;
+            if($tsk->exec($task, $arguments)) return true;
         }
+        return false;
     }
 }

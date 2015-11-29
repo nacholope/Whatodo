@@ -3,6 +3,7 @@ require_once 'data.inc';
 require_once 'Command.php';
 require_once 'InsertTask.php';
 require_once 'InsertCategory.php';
+require_once 'InsertEvent.php';
 require_once 'InsertUser.php';
 require_once 'DeleteUser.php';
 require_once 'DeleteCategory.php';
@@ -49,7 +50,7 @@ class Connection extends mysqli{
     public function insert($task, $arguments)
     {
         $insert = new Insert();
-        $insert->run($task, $arguments);
+        return $insert->run($task, $arguments);
     }
     /**
      * DELETE
@@ -79,17 +80,3 @@ class Connection extends mysqli{
         return $this->query($query);
     }
 }
-
-
-
-$c = Connection::get();
-//$q = "select * from Users";
-//print_r($c->select($q));
-
-$c->insert("user", ["name"=>'test', "surname"=>'test', "password"=>'test', "email"=>'test@test.es']);
-
-//print_r($c->insert("Users (`name`, surname, `password`, email)","'menorquin', 'llinatge', 'password', 'menorquin@llinatge.es'"));
-
-
-
-

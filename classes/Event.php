@@ -371,8 +371,10 @@ class Event
 
     private function userEventAdress()
     {
+        /*
         $sentenceSQL = "select name from cities WHERE id = {$this->id}";
         $results = Connection::get()->select($sentenceSQL);
+        print_r($results);
         $cityName = $results->fetch_assoc()['name'];
         echo '<div class="row">';
         echo '<div class="input-field col s6">';
@@ -383,7 +385,7 @@ class Event
         echo '<input id="surname" type="text" class="validate" value="'. $this->address .'">';
         echo "<label for='surname' data-error'Incorrecto' data-success='Correcto'>Direccion</label>";
         echo '</div>';
-        echo '</div>';
+        echo '</div>'; */
     }
 
     private function userEventStartime()

@@ -19,6 +19,13 @@
 include 'components/navbar.php';
 ?>
 <main>
+    <?php
+
+    if (!empty($_POST)) {
+        $connection = Connection::get();
+        $sentence = "select id from Users WHERE email = '{$_POST['email']}';";
+    }
+    ?>
     <div class="container">
         <div class="row">
             <ul class="collapsible popout" data-collapsible="accordion">
@@ -45,7 +52,6 @@ include 'components/navbar.php';
                 }
 
                 ?>
-
             </ul>
         </div>
     </div>

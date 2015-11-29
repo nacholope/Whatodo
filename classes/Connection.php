@@ -2,6 +2,10 @@
 require_once 'data.inc';
 require_once 'Command.php';
 require_once 'InsertTask.php';
+require_once 'UpdateTask.php';
+require_once 'Insert.php';
+require_once 'Delete.php';
+require_once 'Update.php';
 require_once 'InsertCategory.php';
 require_once 'InsertEvent.php';
 require_once 'InsertUser.php';
@@ -9,9 +13,7 @@ require_once 'DeleteUser.php';
 require_once 'DeleteCategory.php';
 require_once 'UpdateCategory.php';
 require_once 'UpdateUser.php';
-require_once 'Insert.php';
-require_once 'Delete.php';
-require_once 'Update.php';
+
 
 class Connection extends mysqli{
     private function __construct()
@@ -41,27 +43,31 @@ class Connection extends mysqli{
     {
         return $this->query($query);
     }
+
     /**
      * INSERT
      * @param $task
      * @param $arguments
-     * @return bool|mysqli_result
+     * @param $conditions
+     * @return bool
      */
-    public function insert($task, $arguments)
+    public function insert($task, $arguments, $conditions)
     {
         $insert = new Insert();
-        return $insert->run($task, $arguments);
+        return $insert->run($task, $arguments, $conditions);
     }
+
     /**
      * DELETE
      * @param $task
      * @param $arguments
+     * @param $conditions
      * @return bool|mysqli_result
      */
-    public function delete($task, $arguments){
+    public function delete($task, $arguments, $conditions){
         //TODO: delete
         $delete = new Delete();
-        return $delete->run($task, $arguments);
+        return $delete->run($task, $arguments, $conditions);
 /*        $query = "delete from $table where $condition";
             return $this->query($query);*/
     }

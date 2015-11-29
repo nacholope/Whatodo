@@ -79,7 +79,6 @@ class Connection extends mysqli{
      * @return bool|mysqli_result
      */
     public function update($task, $values, $condition){
-        //TODO: update
         $update = new Update();
         return $update->run($task, $values, $condition);
 /*        $query = "update $task $values where $condition";

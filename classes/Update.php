@@ -12,6 +12,7 @@ class Update implements Command
     public function __construct(){
         $this->add(new UpdateUser());
         $this->add(new UpdateCategory());
+        $this->add(new UpdateEvent());
     }
     public function add($task){$this->tasks[] = $task;}
 

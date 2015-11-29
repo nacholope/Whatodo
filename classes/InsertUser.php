@@ -6,7 +6,7 @@
  * Date: 29/11/15
  * Time: 2:26
  */
-class InsertTaskUser implements InsertTask {
+class InsertUser implements InsertTask {
     private $connection;
     private $query = "";
     public function __construct(){

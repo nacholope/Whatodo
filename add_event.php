@@ -157,9 +157,9 @@ if (empty($_POST)) {
             'public' => $_POST['public'],
             'offer' => $_POST['offer']
         ];
-    print_r($attributes);
-    echo $connection->insert('event', $attributes, null);
-//    header("Location: index.php");
+//    print_r($attributes);
+//    echo $connection->insert('event', $attributes, null);
+    header("Location: user_events.php");
 
 }
 ?>

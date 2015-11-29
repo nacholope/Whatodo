@@ -340,7 +340,7 @@ class Event
             <div class="input-field col s6">
                 <div class="switch">
                     <label>P&uacute;blico
-                    <input type="checkbox">
+                    <input type="checkbox" name="private">
                     <span class="lever"></span>
                     Privado
                     </label>
@@ -351,11 +351,12 @@ class Event
 
     private function userEventCategory()
     {
+        $results = Connection::get()->select("select name from Categories WHERE id = {$this->category}");
         echo '<div class="row">';
         echo '<div class="input-field col s6">';
-        echo '<select>
-                 <option value="" disabled selected>Seleccione una categoria</option>
-                 <option value="1">M&uacute;sica</option>
+        echo '<select name="category">';
+        echo '<option value="'. $this->category . '" selected>' . $results->fetch_assoc()['name'] . '</option>';
+        echo '<option value="1">M&uacute;sica</option>
                  <option value="2">Deportes</option>
                  <option value="3">Cultura</option>
                  <option value="4">Gastronom&iacute;a</option>
@@ -363,7 +364,7 @@ class Event
               <label>Categoria</label>
               </div>';
         echo '<div class="input-field col s6">';
-        echo '<input id="surname" type="text" class="validate" value="'. $this->name .'">';
+        echo '<input id="surname" type="text" class="validate" name="name" value="'. $this->name .'">';
         echo "<label for='surname' data-error='Incorrecto' data-success='Correcto'>Nombre</label>";
         echo '</div>';
         echo '</div>';
@@ -425,7 +426,7 @@ class Event
     private function userEventBodyDescription(){
         echo '<div class="row">';
         echo '<div class="input-field col s12">';
-        echo '<textarea id="description" class="materialize-textarea">' . $this->description .'</textarea>';
+        echo '<textarea name="description" id="description" class="materialize-textarea">' . $this->description .'</textarea>';
         echo '<label for="description">Descripcion</label>';
         echo '</div>';
         echo '</div>';
@@ -434,10 +435,10 @@ class Event
         echo '<div class="row">';
         echo '<div class="input-field col s6">';
         echo '<input id="surname" type="text" class="validate">';
-        echo '<label for="surname" data-error="Incorrecto" data-success="Correcto">Imagen</label>';
+        echo '<label for="surname" name="image" data-error="Incorrecto" data-success="Correcto">Imagen</label>';
         echo '</div>';
         echo '<div class="input-field col s6">';
-        echo '<input id="surname" type="text" value="' . $this->offer . '" class="validate">';
+        echo '<input id="surname" name="offer" type="text" value="' . $this->offer . '" class="validate">';
         echo '<label for="surname" data-error="Incorrecto" data-success="Correcto">Promoci&oacute;n</label>';
         echo '</div>';
         echo '</div>';
@@ -445,11 +446,12 @@ class Event
     private function userEventUpdateButton(){
         echo '<div class="row">
                 <div class="col s12">
-                    <button class="btn waves-effect waves-light" type="submit" name="action">
+                    <button class="btn waves-effect waves-light" type="submit" name="action" value="update">
                         Actualizar
                     </button>
-                    <form method="post" action="user_event.php">
-                        <button class="btn waves-effect waves-light red" type="submit" name="action">
+                    <form method="post" action="user_events.php">
+                        <input type="hidden" name="id" value="' . $this->id .'" />
+                        <button class="btn waves-effect waves-light red" type="submit" name="action" value="delete">
                             Eliminar
                         </button>
                     </form>
@@ -471,7 +473,7 @@ class Event
     private function UserEventBody()
     {
         echo '<div class="collapsible-body">';
-        echo '<form method="POST" action="user_event.php" class="custom-padding center-align">';
+        echo '<form method="POST" action="user_events.php" class="custom-padding center-align">';
         $this->UserEventBodyContent();
         echo '</form>';
         echo '</div>';

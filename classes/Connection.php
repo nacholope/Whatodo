@@ -11,8 +11,10 @@ require_once 'InsertEvent.php';
 require_once 'InsertUser.php';
 require_once 'DeleteUser.php';
 require_once 'DeleteCategory.php';
+require_once 'DeleteEvent.php';
 require_once 'UpdateCategory.php';
 require_once 'UpdateUser.php';
+require_once 'UpdateEvent.php';
 
 
 class Connection extends mysqli{
@@ -81,7 +83,5 @@ class Connection extends mysqli{
     public function update($task, $values, $condition){
         $update = new Update();
         return $update->run($task, $values, $condition);
-/*        $query = "update $task $values where $condition";
-        return $this->query($query);*/
     }
 }

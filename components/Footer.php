@@ -4,7 +4,7 @@
             <div class="col s12">
                 <h5 class="white-text">Whatodo</h5>
                 <p class="grey-text text-lighten-4">
-                    Proyecto realizado para la 2a edición del Hackathon Menorca Connecta
+                    Proyecto realizado para la 2a edici&oacute;n del Hackathon Menorca Connecta
                 </p>
             </div>
         </div>

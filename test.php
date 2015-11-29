@@ -24,3 +24,10 @@ $c = Connection::get();
  * $c->update("category",["name"=>'Informatica'],["id"=>'5']);
  * $c->update("event", ["user"=>'5',"category"=>'5',"name"=>'Un evento asociado a un usuario',"address"=>'Una direccion pa quedar',"city"=>'100', "description"=>'Barbacoa en mi casa este finde...', "dateStart"=>'2015-01-02 12:12:12', "dateEnd"=>'2015-10-10 12:12:12', "img"=>'100.jpg', "public"=>'1', "offer"=>'cerveza gratis!'], ["id"=>'1504']);
  */
+/**FORMATS TO Delete
+ *$c->delete("user", ["id"=>'1498'], null);
+ *$c->delete("category", ["id"=>'1498'], null);
+ *$c->delete("event", ["id"=>'1498'], null);
+ */
+
+$c->delete("event", ["id"=>'1498'], null);

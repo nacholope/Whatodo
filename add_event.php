@@ -18,7 +18,16 @@
 <?php
 include 'components/navbar.php';
 ?>
-<main>
+
+
+
+
+
+
+
+<?php
+if (empty($_POST)) {
+    echo '<main>
     <div class="container">
         <div class="row center-align">
             <p class="flow-text">Anadir evento</p>
@@ -28,7 +37,7 @@ include 'components/navbar.php';
                         <div class="switch">
                             <label>
                                 P&uacute;blico
-                                <input type="checkbox">
+                                <input type="checkbox" id="public">
                                 <span class="lever"></span>
                                 Privado
                             </label>
@@ -37,7 +46,7 @@ include 'components/navbar.php';
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <select>
+                        <select name="category">
                             <option value="" disabled selected>Seleccione una categoria</option>
                             <option value="1">M&uacute;sica</option>
                             <option value="2">Deportes</option>
@@ -47,59 +56,59 @@ include 'components/navbar.php';
                         <label>Categoria</label>
                     </div>
                     <div class="input-field col s6">
-                        <input id="surname" type="text" class="validate" required>
-                        <label for="surname" data-error="Incorrecto" data-success="Correcto">Nombre</label>
+                        <input id="name" name="name" type="text" class="validate" required>
+                        <label for="name" data-error="Incorrecto" data-success="Correcto">Nombre</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="surname" type="text" class="validate" required>
-                        <label for="surname" data-error="Incorrecto" data-success="Correcto">Direcci&oacute;n</label>
+                        <input id="address" name="address" type="text" class="validate" required>
+                        <label for="address" data-error="Incorrecto" data-success="Correcto">Dirección</label>
                     </div>
                     <div class="input-field col s6">
-                        <input id="surname" type="text" class="validate" required>
-                        <label for="surname" data-error="Incorrecto" data-success="Correcto">Ciudad</label>
+                        <input id="city" name="city" type="text" class="validate" required>
+                        <label for="city" data-error="Incorrecto" data-success="Correcto">Ciudad</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
                         <label for="dateStart">Fecha inicio</label>
-                        <input id="dateStart" type="date" class="datepicker">
+                        <input id="dateStart" name="dateStart" type="date" class="datepicker">
                     </div>
                     <div class="input-field col s6">
                         <label for="timeStart">Hora inicio</label>
-                        <input id="timeStart" class="timepicker" type="text">
+                        <input id="timeStart" name="timeStart" class="timepicker" type="text">
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <label for="dateFinish">Fecha fin</label>
-                        <input id="dateFinish" type="date" class="datepicker">
+                        <label for="dateEnd">Fecha fin</label>
+                        <input id="dateEnd" name="dateEnd" type="date" class="datepicker">
                     </div>
                     <div class="input-field col s6">
-                        <label for="timeFinish">Hora fin</label>
-                        <input id="timeFinish" class="timepicker" type="text">
+                        <label for="timeEnd">Hora fin</label>
+                        <input id="timeEnd" name="timeEnd" class="timepicker" type="text">
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="description" class="materialize-textarea"></textarea>
-                        <label for="description">Descripci&oacute;n</label>
+                        <textarea id="description" name="description" class="materialize-textarea"></textarea>
+                        <label for="description">Descripción</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="surname" type="text" class="validate">
-                        <label for="surname" data-error="Incorrecto" data-success="Correcto">Imagen</label>
+                        <input id="img" name="img" type="text" class="validate">
+                        <label for="name" data-error="Incorrecto" data-success="Correcto">Imagen</label>
                     </div>
                     <div class="input-field col s6">
-                        <input id="surname" type="text" class="validate">
-                        <label for="surname" data-error="Incorrecto" data-success="Correcto">Promoci&oacute;n</label>
+                        <input id="offer" name="offer" type="text" class="validate">
+                        <label for="name" data-error="Incorrecto" data-success="Correcto">Promoción</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s12">
-                        <button class="btn waves-effect waves-light" type="submit" name="action">
+                        <button class="btn waves-effect waves-light" type="submit" name="submit">
                             Crear
                         </button>
                     </div>
@@ -107,7 +116,44 @@ include 'components/navbar.php';
             </form>
         </div>
     </div>
-</main>
+</main>';
+} else {
+    $connection = Connection::get();
+    $attributes =
+        [
+            'name' => $_POST['name'],
+            'surname' => $_POST['surname'],
+            'password' => $_POST['password'],
+            'email' => $_POST['email']
+        ];
+    $connection->insert('event', $attributes, null);
+
+
+}
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <?php
 include 'components/Footer.php';
@@ -121,7 +167,7 @@ echo Script::CLOCKPICKER;
 ?>
 
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('select').material_select();
     });
 </script>
@@ -137,10 +183,21 @@ echo Script::CLOCKPICKER;
     $('#timeStart').pickatime({
         twelvehour: false
     });
-    $('#timeFinish').pickatime({
+    $('#timeEnd').pickatime({
         twelvehour: false
     });
 </script>
+
+<script>
+    var button = $('#submit');
+    button.on('click', function () {
+//        * $c->insert("event", ["user"=>'1001',"category"=>'5',"name"=>'Un evento asociado a un usuario',"address"=>'Una direccion pa quedar',"city"=>'100', "description"=>'Barbacoa en mi casa este finde...', "dateStart"=>'2015-01-02 12:12:12', "dateEnd"=>'2015-10-10 12:12:12', "img"=>'100.jpg', "public"=>'1', "offer"=>'cerveza gratis!'], null);
+
+        data = $('user').getAttribute('value');
+        console.log(data);
+    });
+</script>
+
 
 </body>
 </html>

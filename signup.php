@@ -34,7 +34,7 @@
                         'password' => $_POST['password'],
                         'email' => $_POST['email']
                     ];
-                if ($connection->insert('user', $data) == 1) {
+                if ($connection->insert('user', $data, null) == 1) {
                     header("Location: login.php");
                 } else {
                     echo '<h5 class="center-align" style="color:red;">Error, comprueba que la información es correcta</h5>';

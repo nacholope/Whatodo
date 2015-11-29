@@ -22,17 +22,23 @@
 
         if (!empty($_POST)) {
             $connection = Connection::get();
-            $data =
-                [
-                    'name' => $_POST['name'],
-                    'surname' => $_POST['surname'],
-                    'password' => $_POST['password'],
-                    'email' => $_POST['email']
-                ];
-            if ($connection->insert('user', $data) == 1) {
-                header("Location: login.php");
+            $sentence = "select id from Users WHERE email = '{$_POST['email']}';";
+            $email_validate = $connection->select($sentence);
+            if ($email_validate->num_rows > 0) {
+                echo '<h5 class="center-align" style="color:red;">El email ya existe.</h5>';
             } else {
-                echo '<h5 class="center-align" style="color:red;">Error, comprueba que la información es correcta</h5>';
+                $data =
+                    [
+                        'name' => $_POST['name'],
+                        'surname' => $_POST['surname'],
+                        'password' => $_POST['password'],
+                        'email' => $_POST['email']
+                    ];
+                if ($connection->insert('user', $data) == 1) {
+                    header("Location: login.php");
+                } else {
+                    echo '<h5 class="center-align" style="color:red;">Error, comprueba que la información es correcta</h5>';
+                }
             }
         }
         ?>
@@ -64,15 +70,15 @@
                 <div class="row">
                     <div class="col s12">
                         <p>
-                            <input type="checkbox" id="rememberMe" name="conditions"/>
-                            <label for="rememberMe">He le&iacute;do y acepto los <a href="#">t&eacute;rminos y
+                            <input type="checkbox" id="terms"/>
+                            <label for="terms">He le&iacute;do y acepto los <a href="#">t&eacute;rminos y
                                     condiciones</a>.</label>
                         </p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s12">
-                        <button class="btn waves-effect waves-light" type="submit" name="action">
+                            <button class="btn waves-effect waves-light" disabled="disabled" type="submit" id="submit">
                             Registrarse
                         </button>
                     </div>
@@ -91,7 +97,13 @@ echo Script::JQUERY;
 echo Script::MATERIALIZE;
 ?>
 <script type="application/javascript">
-    //todo validate checkbox
+    $('#terms').click(function(){
+        if($('#submit').prop("disabled") == true){
+            $('#submit').prop("disabled",false);
+        }else{
+            $('#submit').prop("disabled",true);
+        }
+    });
 </script>
 </body>
 </html>

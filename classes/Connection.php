@@ -1,28 +1,18 @@
 <?php
 require_once 'data.inc';
 require_once 'Command.php';
-require_once 'TaskInsert.php';
-require_once 'Inserts.php';
+require_once 'InsertTask.php';
+require_once 'InsertCategory.php';
+require_once 'InsertUser.php';
+require_once 'DeleteUser.php';
+require_once 'DeleteCategory.php';
+require_once 'UpdateCategory.php';
+require_once 'UpdateUser.php';
+require_once 'Insert.php';
+require_once 'Delete.php';
+require_once 'Update.php';
 
-class Insert implements Command
-{
-    private $tasks;
-    public function __construct(){
-        $this->add(new InsertUser());
-        $this->add(new InsertCategory());
-    }
-    public function add($task){$this->tasks[] = $task;}
-
-    public function run($task, $arguments){
-        foreach($this->tasks as $tsk){
-            if($tsk->exec($task, $arguments)) return;
-        }
-    }
-}
-
-
-class Connection extends mysqli
-{
+class Connection extends mysqli{
     private function __construct()
     {
         parent::__construct(SERVER, OPERATOR, PASSWORD, DATABASE);
@@ -58,42 +48,36 @@ class Connection extends mysqli
      */
     public function insert($task, $arguments)
     {
-        $insert = new Insert(Connection::get());
+        $insert = new Insert();
         $insert->run($task, $arguments);
-
-/*        $query = "insert into $task values ($arguments)";
-        echo $query;
-        return $this->query($query);*/
     }
     /**
      * DELETE
-     * @param $table
-     * @param $condition
+     * @param $task
+     * @param $arguments
      * @return bool|mysqli_result
      */
-    public function delete($table, $condition){
-        $query = "delete from $table where $condition";
-            return $this->query($query);
+    public function delete($task, $arguments){
+        //TODO: delete
+        $delete = new Delete();
+        $delete->run($task, $arguments);
+/*        $query = "delete from $table where $condition";
+            return $this->query($query);*/
     }
     /**
      * UPDATE
-     * @param $table
+     * @param $task
      * @param $values
      * @param $condition
      * @return bool|mysqli_result
      */
-    public function update($table, $values, $condition){
-        $query = "update $table $values where $condition";
+    public function update($task, $values, $condition){
+        //TODO: update
+        $update = new Update();
+        $update->run($task, $values, $condition);
+        $query = "update $task $values where $condition";
         return $this->query($query);
     }
-
-
-
-
-
-
-
-
 }
 
 

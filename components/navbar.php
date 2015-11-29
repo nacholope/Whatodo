@@ -1,8 +1,8 @@
 <ul id="categories" class="dropdown-content">
 <?php
     include 'classes/Connection.php';
-    $c = new Connection();
-    $results = $c->select("select * from Categories");
+    $connection = Connection::get();
+    $results = $connection->select("select * from Categories");
     while($category = $results->fetch_assoc()){
         echo "<li><a href='index.php?category={$category['id']}'>{$category['name']}</a></li>";
     }

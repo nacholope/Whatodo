@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="ISO-8859-1" content="text/html"/>
     <title>Whatodo</title>
     <?PHP
     include 'classes/session.inc';
@@ -21,7 +22,7 @@
     if(isset($_SESSION['loged']) && $_SESSION['loged'] == 1) header("Location: index.php");
     if (!empty($_POST)) {
         print_r($_POST);
-        $conec = new Connection();
+        $connection = Connection::get();
 
         $sentenceSQL = "select *
                         from Users
@@ -29,7 +30,7 @@
                         and
                         password = '{$_POST['password']}';";
         echo $sentenceSQL;
-        $results = $conec->select($sentenceSQL);
+        $results = $connection->select($sentenceSQL);
         if($results->num_rows == 1){
             $data = $results->fetch_assoc();
             $_SESSION['id'] = $data['id'];

@@ -18,6 +18,7 @@ class Event
     private $public;
     private $offer;
     private $img;
+    private $conexion;
 
     /**
      * Event constructor.
@@ -34,7 +35,7 @@ class Event
      * @param $img
      * @param $id
      */
-    public function __construct($id,$user, $category, $name, $address, $city, $description, $date_start, $date_end, $img, $public, $offer)
+    public function __construct($id, $user, $category, $name, $address, $city, $description, $date_start, $date_end, $img, $public, $offer)
     {
         $this->user = $user;
         $this->category = $category;
@@ -322,4 +323,108 @@ class Event
         $this->finishCard();
     }
 
+    private function openUserEvent()
+    {
+        echo '<li>';
+        echo "<div class='collapsible-header'><i class='material-icons'>whatshot</i>{$this->name}</div>";
+    }
+
+    private function closeUserEvent()
+    {
+        echo '</li>';
+    }
+
+    private function userEventSwitch()
+    {
+        echo '<div class="row custom-row-margin">
+            <div class="input-field col s6">
+                <div class="switch">
+                    <label>P&uacute;blico
+                    <input type="checkbox">
+                    <span class="lever"></span>
+                    Privado
+                    </label>
+                </div>
+            </div>
+        </div>';
+    }
+
+    private function userEventCategory()
+    {
+        echo '<div class="row">';
+        echo '<div class="input-field col s6">';
+        echo '<select>
+                 <option value="" disabled selected>Seleccione una categoria</option>
+                 <option value="1">M&uacute;sica</option>
+                 <option value="2">Deportes</option>
+                 <option value="3">Cultura</option>
+                 <option value="4">Gastronom&iacute;a</option>
+              </select>
+              <label>Categoria</label>
+              </div>';
+        echo '<div class="input-field col s6">';
+        echo '<input id="surname" type="text" class="validate" required>';
+        echo "<label for='surname' data-error='Incorrecto' data-success='Correcto'>{$this->name}</label>";
+        echo '</div>';
+        echo '</div>';
+    }
+
+    private function userEventAdress()
+    {
+        echo '<div class="row">';
+        echo '<div class="input-field col s6">';
+        echo '<input id="surname" type="text" class="validate" required="">';
+        echo "<label for='surname' data-error='Incorrecto' data-success='Correcto'>{$this->address}</label>";
+        echo '</div>';
+        echo '<div class="input-field col s6">';
+        echo '<input id="surname" type="text" class="validate" required="">';
+        $results = Connection::get()->select("select name from Cities WHERE id = {$this->id}");
+        $cityName = $results->fetch_assoc()['name'];
+        echo "<label for='surname' data-error'Incorrecto' data-success='Correcto'>$cityName</label>";
+        echo '</div>';
+        echo '</div>';
+    }
+
+    private function userEventStartime()
+    {
+        $date = $this->date_start;
+        $date_Start = explode(" ",$date)[0];
+        $date_Start_hour = explode(" ",$date)[1];
+        $date_Start_hour = substr($date_Start_hour,0,strlen($date_Start_hour)-3);
+        echo '<div class="row">';
+        echo '<div class="input-field col s6">';
+        echo '<label for="dateStart">Fecha inicio</label>';
+        echo "<input id='dateStart' type='date' value='{$date_Start}' class='datepicker'>";
+        echo '</div>';
+        echo '<div class="input-field col s6">';
+        echo '<label for="timeStart">Hora inicio</label>';
+        echo "<input id='timeStart' class='timepicker' value='{$date_Start_hour}' type='text'>";
+        echo '</div>';
+        echo '</div>';
+    }
+
+    private function userEventBodyContent()
+    {
+        $this->userEventSwitch();
+        $this->userEventCategory();
+        $this->userEventAdress();
+        $this->userEventStartime();
+    }
+
+    private function UserEventBody()
+    {
+        echo '<div class="collapsible-body">';
+        echo '<form method="POST" action="user_event.php" class="custom-padding">';
+        $this->UserEventBodyContent();
+        echo '</form>';
+        echo '</div>';
+    }
+
+    public function paintUserEvents()
+    {
+        $this->conexion = Connection::get();
+        $this->openUserEvent();
+        $this->userEventBody();
+        $this->closeUserEvent();
+    }
 }

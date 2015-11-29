@@ -22,6 +22,28 @@ include 'components/navbar.php';
     <div class="container">
         <div class="row">
             <ul class="collapsible popout" data-collapsible="accordion">
+                <?php
+                include 'classes/Event.php';
+                $connection = Connection::get();
+                $results = $connection->select("select * from Events where user = {$_SESSION['id']}");
+                $evt = $results->fetch_assoc();
+                $event = new Event(
+                    $evt['id'],
+                    $evt['user'],
+                    $evt['category'],
+                    $evt['name'],
+                    $evt['address'],
+                    $evt['city'],
+                    $evt['description'],
+                    $evt['dateStart'],
+                    $evt['dateEnd'],
+                    $evt['img'],
+                    $evt['public'],
+                    $evt['offer']
+                );
+                $event->paintUserEvents();
+                ?>
+
                 <li>
                     <div class="collapsible-header"><i class="material-icons">whatshot</i>Nombre del evento</div>
                     <div class="collapsible-body">
@@ -127,7 +149,7 @@ echo Script::CLOCKPICKER;
 ?>
 
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('select').material_select();
     });
 </script>

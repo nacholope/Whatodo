@@ -30,7 +30,6 @@
                         where email = '{$_POST['email']}'
                         and
                         password = '{$_POST['password']}';";
-        echo $sentenceSQL;
         $results = $connection->select($sentenceSQL);
         if($results->num_rows == 1){
             $data = $results->fetch_assoc();

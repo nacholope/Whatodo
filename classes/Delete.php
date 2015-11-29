@@ -15,7 +15,7 @@ class Delete implements Command
     }
     public function add($task){$this->tasks[] = $task;}
 
-    public function run($task, $arguments){
+    public function run($task, $arguments, $conditions){
         foreach($this->tasks as $tsk){
             if($tsk->exec($task, $arguments)) return;
         }

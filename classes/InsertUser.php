@@ -26,7 +26,6 @@ class InsertUser implements InsertTask {
                 }
             }
             $this->query .= ");";
-//            print_r($this->connection);
             return $this->connection->query($this->query);
         }
     }

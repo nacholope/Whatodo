@@ -4,9 +4,9 @@
  * Created by PhpStorm.
  * User: eduardo
  * Date: 29/11/15
- * Time: 2:51
+ * Time: 13:26
  */
-class UpdateCategory implements UpdateTask
+class UpdateEvent implements UpdateTask
 {
     private $connection;
     private $query = "";
@@ -15,13 +15,13 @@ class UpdateCategory implements UpdateTask
     }
     public function exec($command, $arguments, $conditions){
         print_r($conditions);
-        if ($command != "category"){return false;}
+        if ($command != "event"){return false;}
         else {
             $args = array_values($arguments);
             $keysArguments = array_keys($arguments);
             $keysConditions = array_keys($conditions);
             $cons = array_values($conditions);
-            $this->query = "update Categories set ";
+            $this->query = "update Events set ";
             for ($i = 0; $i < count($args); $i++){
                 if($i == count($args)-1){
                     $this->query .= "$keysArguments[$i] = '$args[$i]'";

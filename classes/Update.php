@@ -10,14 +10,16 @@ class Update implements Command
 {
     private $tasks;
     public function __construct(){
-        $this->add(new UpdatetUser());
+        $this->add(new UpdateUser());
         $this->add(new UpdateCategory());
+        $this->add(new UpdateEvent());
     }
     public function add($task){$this->tasks[] = $task;}
 
-    public function run($task, $arguments){
+    public function run($task, $arguments, $conditions){
         foreach($this->tasks as $tsk){
-            if($tsk->exec($task, $arguments)) return;
+            if($tsk->exec($task, $arguments, $conditions)) return true;
         }
+        return false;
     }
 }

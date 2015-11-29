@@ -6,7 +6,42 @@
  * Date: 29/11/15
  * Time: 2:50
  */
-class UpdateUser
+class UpdateUser implements UpdateTask
 {
-
+    private $connection;
+    private $query = "";
+    public function __construct(){
+        $this->connection = Connection::get();
+    }
+    public function exec($command, $arguments, $conditions){
+        print_r($conditions);
+        if ($command != "user"){return false;}
+        else {
+            $args = array_values($arguments);
+            $keysArguments = array_keys($arguments);
+            $keysConditions = array_keys($conditions);
+            $cons = array_values($conditions);
+            $this->query = "update Users set ";
+            for ($i = 0; $i < count($args); $i++){
+                if($i == count($args)-1){
+                    $this->query .= "$keysArguments[$i] = '$args[$i]'";
+                }
+                else{
+                    $this->query .= "$keysArguments[$i] = '$args[$i]', ";
+                }
+            }
+            $this->query .= " where ";
+            for ($i = 0; $i < count($cons); $i++){
+                if($i == count($cons)-1){
+                    $this->query .= "$keysConditions[$i] = '$cons[$i]'";
+                }
+                else{
+                    $this->query .= "$keysConditions[$i] = '$cons[$i]' and";
+                }
+            }
+            $this->query .= ";";
+            print_r($this->query);
+            return $this->connection->query($this->query);
+        }
+    }
 }

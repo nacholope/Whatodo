@@ -7,5 +7,5 @@
  */
 interface Command {
     public function add($task);
-    public function run($task, $arguments);
+    public function run($task, $arguments, $conditions);
 }

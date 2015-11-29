@@ -31,7 +31,7 @@ if (empty($_POST)) {
     <div class="container">
         <div class="row center-align">
             <p class="flow-text">Anadir evento</p>
-            <form class="custom-padding center-align">
+            <form class="custom-padding center-align" method="post">
                 <div class="row custom-row-margin">
                     <div class="input-field">
                         <div class="switch">
@@ -118,15 +118,36 @@ if (empty($_POST)) {
     </div>
 </main>';
 } else {
+//        * $c->insert("event", [
+//"user"=>'1001',
+//"category"=>'5',
+//"name"=>'Un evento asociado a un usuario',
+//"address"=>'Una direccion pa quedar',
+//"city"=>'100',
+//"description"=>'Barbacoa en mi casa este finde...',
+//"dateStart"=>'2015-01-02 12:12:12',
+//"dateEnd"=>'2015-10-10 12:12:12',
+//"img"=>'100.jpg',
+//"public"=>'1',
+//"offer"=>'cerveza gratis!'], null);
+    echo "MUNDOOOOOOOOOOOOOOOOOOOOOOO";
     $connection = Connection::get();
     $attributes =
         [
+            'user' => $_SESSION['id'],
+            'category' => $_POST['category'],
             'name' => $_POST['name'],
-            'surname' => $_POST['surname'],
-            'password' => $_POST['password'],
-            'email' => $_POST['email']
+            'address' => $_POST['address'],
+            'city' => $_POST['city'],
+            'description' => $_POST['description'],
+            'dateStart' => $_POST['dateStart'] . $_POST['timeStart'] . ':00',
+            'dateEnd' => $_POST['dateEnd'] . $_POST['timeEnd'] . ':00',
+            'img' => $_POST['img'],
+            'public' => $_POST['public'],
+            'offer' => $_POST['offer']
         ];
-    $connection->insert('event', $attributes, null);
+    print_r($attributes);
+    echo $connection->insert('event', $attributes, null);
 
 
 }
@@ -191,8 +212,6 @@ echo Script::CLOCKPICKER;
 <script>
     var button = $('#submit');
     button.on('click', function () {
-//        * $c->insert("event", ["user"=>'1001',"category"=>'5',"name"=>'Un evento asociado a un usuario',"address"=>'Una direccion pa quedar',"city"=>'100', "description"=>'Barbacoa en mi casa este finde...', "dateStart"=>'2015-01-02 12:12:12', "dateEnd"=>'2015-10-10 12:12:12', "img"=>'100.jpg', "public"=>'1', "offer"=>'cerveza gratis!'], null);
-
         data = $('user').getAttribute('value');
         console.log(data);
     });

@@ -32,7 +32,7 @@ if (empty($_POST)) {
     echo '<main>
     <div class="container">
         <div class="row center-align">
-            <p class="flow-text">Añadir evento</p>
+            <p class="flow-text">A&ntilde;adir evento</p>
             <form class="custom-padding center-align" method="post">
                 <div class="row custom-row-margin">
                     <div class="input-field">
@@ -65,7 +65,7 @@ if (empty($_POST)) {
                 <div class="row">
                     <div class="input-field col s6">
                         <input id="address" name="address" type="text" class="validate" required>
-                        <label for="address" data-error="Incorrecto" data-success="Correcto">Dirección</label>
+                        <label for="address" data-error="Incorrecto" data-success="Correcto">Direcci&oacute;n</label>
                     </div>
                     <div class="input-field col s6">
                         <input id="city" name="city" type="text" class="validate" required>
@@ -95,7 +95,7 @@ if (empty($_POST)) {
                 <div class="row">
                     <div class="input-field col s12">
                         <textarea id="description" name="description" class="materialize-textarea"></textarea>
-                        <label for="description">Descripción</label>
+                        <label for="description">Descripci&oacute;n</label>
                     </div>
                 </div>
                 <div class="row">
@@ -114,7 +114,7 @@ if (empty($_POST)) {
                     </div>
                     <div class="input-field col s6">
                         <input id="offer" name="offer" type="text" class="validate">
-                        <label for="name" data-error="Incorrecto" data-success="Correcto">Promoción</label>
+                        <label for="name" data-error="Incorrecto" data-success="Correcto">Promoci&oacute;n</label>
                     </div>
                 </div>
                 <div class="row">

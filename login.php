@@ -20,8 +20,9 @@
     <?php
 
     if(isset($_SESSION['loged']) && $_SESSION['loged'] == 1) header("Location: index.php");
+
     if (!empty($_POST)) {
-        print_r($_POST);
+
         $connection = Connection::get();
 
         $sentenceSQL = "select *

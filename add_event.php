@@ -26,6 +26,8 @@ include 'components/navbar.php';
 
 
 <?php
+if(isset($_SESSION['loged']) == null) header("Location: index.php");
+
 if (empty($_POST)) {
     echo '<main>
     <div class="container">
@@ -148,7 +150,7 @@ if (empty($_POST)) {
         ];
     print_r($attributes);
     echo $connection->insert('event', $attributes, null);
-
+    header("Location: index.php");
 
 }
 ?>
@@ -196,7 +198,8 @@ echo Script::CLOCKPICKER;
 <script type="text/javascript">
     $('.datepicker').pickadate({
         selectMonths: true, // Creates a dropdown to control month
-        selectYears: 15 // Creates a dropdown of 15 years to control year
+        selectYears: 15,
+        format: 'yyyy-mm-dd'// Creates a dropdown of 15 years to control year
     });
 </script>
 

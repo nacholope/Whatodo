@@ -19,3 +19,14 @@ nav,footer{
 .card{
     margin-top: 5%;
 }
+
+.custom-padding {
+    padding: 2rem;
+}
+
+.custom-margin {
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}

@@ -7,6 +7,7 @@
     include 'classes/session.inc';
     include 'components/Css.php';
     echo Css::MATERIALIZE;
+    echo Css::CLOCKPICKER;
     echo Css::MAIN;
     ?>
     <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
@@ -24,9 +25,9 @@ include 'components/navbar.php';
                 <li>
                     <div class="collapsible-header"><i class="material-icons">whatshot</i>Nombre del evento</div>
                     <div class="collapsible-body">
-                        <form class="custom-padding">
-                            <div class="row">
-                                <div class="input-field col s6">
+                        <form class="custom-padding center-align">
+                            <div class="row custom-row-margin">
+                                <div class="input-field">
                                     <div class="switch">
                                         <label>
                                             P&uacute;blico
@@ -65,12 +66,22 @@ include 'components/navbar.php';
                             </div>
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <label for="dateStart">Inicio</label>
+                                    <label for="dateStart">Fecha inicio</label>
                                     <input id="dateStart" type="date" class="datepicker">
                                 </div>
                                 <div class="input-field col s6">
-                                    <label for="dateFinish">Fin</label>
+                                    <label for="timeStart">Hora inicio</label>
+                                    <input id="timeStart" class="timepicker" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <label for="dateFinish">Fecha fin</label>
                                     <input id="dateFinish" type="date" class="datepicker">
+                                </div>
+                                <div class="input-field col s6">
+                                    <label for="timeFinish">Hora fin</label>
+                                    <input id="timeFinish" class="timepicker" type="text">
                                 </div>
                             </div>
                             <div class="row">
@@ -112,6 +123,7 @@ include 'components/Footer.php';
 include 'components/Script.php';
 echo Script::JQUERY;
 echo Script::MATERIALIZE;
+echo Script::CLOCKPICKER;
 ?>
 
 <script type="text/javascript">
@@ -124,6 +136,15 @@ echo Script::MATERIALIZE;
     $('.datepicker').pickadate({
         selectMonths: true, // Creates a dropdown to control month
         selectYears: 15 // Creates a dropdown of 15 years to control year
+    });
+</script>
+
+<script type="text/javascript">
+    $('#timeStart').pickatime({
+        twelvehour: false
+    });
+    $('#timeFinish').pickatime({
+        twelvehour: false
     });
 </script>
 

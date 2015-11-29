@@ -30,3 +30,7 @@ nav,footer{
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;
 }
+
+.custom-row-margin {
+    margin-bottom: 80px;
+}

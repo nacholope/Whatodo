@@ -54,7 +54,7 @@ include 'components/navbar.php';
                 <div class="row">
                     <div class="input-field col s6">
                         <input id="surname" type="text" class="validate" required>
-                        <label for="surname" data-error="Incorrecto" data-success="Correcto">Direcci&oacute;n</label>
+                        <label for="surname" data-error="Incorrecto" data-success="Correcto">Dirección</label>
                     </div>
                     <div class="input-field col s6">
                         <input id="surname" type="text" class="validate" required>
@@ -84,7 +84,7 @@ include 'components/navbar.php';
                 <div class="row">
                     <div class="input-field col s12">
                         <textarea id="description" class="materialize-textarea"></textarea>
-                        <label for="description">Descripci&oacute;n</label>
+                        <label for="description">Descripción</label>
                     </div>
                 </div>
                 <div class="row">
@@ -94,7 +94,7 @@ include 'components/navbar.php';
                     </div>
                     <div class="input-field col s6">
                         <input id="surname" type="text" class="validate">
-                        <label for="surname" data-error="Incorrecto" data-success="Correcto">Promoci&oacute;n</label>
+                        <label for="surname" data-error="Incorrecto" data-success="Correcto">Promoción</label>
                     </div>
                 </div>
                 <div class="row">

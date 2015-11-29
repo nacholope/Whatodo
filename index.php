@@ -2,7 +2,9 @@
 <html>
 <head>
     <title>Whatodo</title>
-    <?PHP include 'components/Css.php';
+    <?PHP
+    include 'classes/session.inc';
+    include 'components/Css.php';
     echo Css::MATERIALIZE;
     echo Css::MAIN;
     ?>
@@ -11,117 +13,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-<?php include 'components/navbar.php' ?>
-<div class="container">
-    <div class="row">
-        <div class="col s12 m4">
+<?php include 'components/navbar.php'; ?>
+<main>
+    <div class="container">
+        <div class="row">
             <?php
-            include 'classes/Event.php';
+            function displayContent($condition = null)
+            {
+                include 'classes/Event.php';
+                $conec = new Connection();
 
-            $event = new Event("4", "deportes", "Sant Joan", "vives llull 15", "mahon", "Lorem ipsum", "28-11-2015", "29-11-2015", true, false, "sant-joan.jpg", 14);
-            $event->paintEvent();
+                $sentenceSQL = "select * from Events";
+                if($condition != null) $sentenceSQL .= " where category = " . $condition ;
+                $sentenceSQL .= " limit 15";
+                $results = $conec->select($sentenceSQL);
+                while ($evt = $results->fetch_assoc()) {
+                    $event = new Event(
+                        $evt['id'],
+                        $evt['user'],
+                        $evt['category'],
+                        $evt['name'],
+                        $evt['address'],
+                        $evt['city'],
+                        $evt['description'],
+                        $evt['dateStart'],
+                        $evt['dateEnd'],
+                        $evt['img'],
+                        $evt['public'],
+                        $evt['offer']
+                    );
+                    echo '<div class="col s12 m4">';
+                    $event->paintEvent();
+                    echo '</div>';
+
+                }
+            }
+
+            if (!empty($_GET)) {
+                displayContent($_GET['category']);
+            } else {
+                displayContent();
+            }
             ?>
-        </div>
-        <div class="col s12 m4">
-            <div class="card">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src='img/sant-joan.jpg'>
-                </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Card Title<i
-                            class="material-icons right">more_vert</i></span>
 
-                    <p><a href="#">This is a link</a></p>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-
-                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m4">
-            <div class="card">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src='img/sant-joan.jpg'>
-                </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Card Title<i
-                            class="material-icons right">more_vert</i></span>
-
-                    <p><a href="#">This is a link</a></p>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-
-                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m4">
-            <div class="card">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src='img/sant-joan.jpg'>
-                </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Card Title<i
-                            class="material-icons right">more_vert</i></span>
-
-                    <p><a href="#">This is a link</a></p>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-
-                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m4">
-            <div class="card">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src='img/sant-joan.jpg'>
-                </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Card Title<i
-                            class="material-icons right">more_vert</i></span>
-
-                    <p><a href="#">This is a link</a></p>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-
-                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m4">
-            <div class="card">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src='img/sant-joan.jpg'>
-                </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Card Title<i
-                            class="material-icons right">more_vert</i></span>
-
-                    <p><a href="#">This is a link</a></p>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-
-                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                </div>
-            </div>
         </div>
     </div>
-</div>
+</main>
 
 <?php
 include 'components/Footer.php';
 ?>
 
-<?php include 'components/Script.php';
+<?php
+include 'components/Script.php';
 echo Script::JQUERY;
 echo Script::MATERIALIZE;
 ?>
+<script type="application/javascript">
+    console.log("hi");
+</script>
 </body>
 </html>

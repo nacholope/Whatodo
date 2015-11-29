@@ -34,7 +34,7 @@ class Event
      * @param $img
      * @param $id
      */
-    public function __construct($user, $category, $name, $address, $city, $description, $date_start, $date_end, $public, $offer, $img, $id)
+    public function __construct($id,$user, $category, $name, $address, $city, $description, $date_start, $date_end, $img, $public, $offer)
     {
         $this->user = $user;
         $this->category = $category;
@@ -275,8 +275,8 @@ class Event
     private function paintTitle()
     {
         $title = ucfirst(strtolower($this->name));
-        if (strlen($title) > 24) {
-            $title = substr($title, 0, 21);
+        if (strlen($title) > 20) {
+            $title = substr($title, 0, 17);
             $title .= '...';
             echo "<span class='card-title activator text-darken-4'>{$title}<i
                             class='material-icons right'>more_vert</i></span>";

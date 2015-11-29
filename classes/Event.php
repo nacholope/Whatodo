@@ -266,7 +266,7 @@ class Event
     private function paintImage()
     {
         echo '<div class="card-image waves-effect waves-block waves-light">';
-        echo "<img class='activator' src='img/{$this->img}'>";
+        echo "<img class='activator responsive-img small' src='img/{$this->img}'>";
         echo '</div>';
     }
 

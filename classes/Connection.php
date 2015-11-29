@@ -61,7 +61,7 @@ class Connection extends mysqli{
     public function delete($task, $arguments){
         //TODO: delete
         $delete = new Delete();
-        $delete->run($task, $arguments);
+        return $delete->run($task, $arguments);
 /*        $query = "delete from $table where $condition";
             return $this->query($query);*/
     }
@@ -75,8 +75,8 @@ class Connection extends mysqli{
     public function update($task, $values, $condition){
         //TODO: update
         $update = new Update();
-        $update->run($task, $values, $condition);
-        $query = "update $task $values where $condition";
-        return $this->query($query);
+        return $update->run($task, $values, $condition);
+/*        $query = "update $task $values where $condition";
+        return $this->query($query);*/
     }
 }

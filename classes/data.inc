@@ -1,6 +1,6 @@
 <?php
-	define("SERVER", "127.0.0.1");
+	define("SERVER", "192.168.1.188");
 	define("OPERATOR", "root");
-	define("PASSWORD", "a00aa00a");
-	define("DATABASE", "whatodo");
-?>
+	define("PASSWORD", "1234");
+	define("DATABASE", "mydb");
+

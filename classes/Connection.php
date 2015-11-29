@@ -93,4 +93,3 @@ $c->insert("user", ["name"=>'test', "surname"=>'test', "password"=>'test', "emai
 
 
 
-?>

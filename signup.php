@@ -21,7 +21,6 @@
         if (isset($_SESSION['loged']) && $_SESSION['loged'] == 1) header("Location: index.php");
 
         if (!empty($_POST)) {
-            print_r($_POST);
             $connection = Connection::get();
             $data =
                 [
@@ -30,10 +29,11 @@
                     'password' => $_POST['password'],
                     'email' => $_POST['email']
                 ];
-            echo "resultado insert->" . $connection->insert('user', $data);
-
-            echo '<h5 class="center-align" style="color:red;">Error invalid user or password</h5>';
-
+            if ($connection->insert('user', $data) == 1) {
+                header("Location: login.php");
+            } else {
+                echo '<h5 class="center-align" style="color:red;">Error, comprueba que la información es correcta</h5>';
+            }
         }
         ?>
         <div class="row">

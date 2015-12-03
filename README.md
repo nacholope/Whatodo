@@ -1,3 +1,3 @@
 # Whatodo
 
-## Hackathon Menorca 2015
+Hackathon Menorca 2015
